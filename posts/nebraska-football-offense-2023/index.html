@@ -153,7 +153,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
                                 <div class="quarto-categories">
                 <div class="quarto-category">ncaa</div>
                 <div class="quarto-category">football</div>
-                <div class="quarto-category">huskers</div>
+                <div class="quarto-category">nebraska</div>
               </div>
                   </div>
   </div>
@@ -191,6 +191,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Nebraska’s offense in 2023 was not good. How bad was it, really?</p>
+<p>It’s no secret that Nebraska struggled to find good consistent play on offense. Combine that with injuries to key players on offense and a revolving door at the quarterback position, Nebraska failed to score at least 20 points in eight games.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -207,6 +208,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>teamoff <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"teamoffense.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 133 Columns: 25
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (1): School
+dbl (24): Rk, G, Pts, PassingCmp, PassingAtt, PassingPct, PassingYds, Passin...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(teamoff)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 25
+     Rk School     G   Pts PassingCmp PassingAtt PassingPct PassingYds PassingTD
+  &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;
+1     1 LSU       13  45.5       22         31.6       69.6       339.       3.4
+2     2 Oregon    14  44.2       28.4       36.7       77.2       347.       3.5
+3     3 USC       13  41.8       24.2       35.5       68.1       333        2.8
+4     4 Oklah…    13  41.7       23.8       34.8       68.4       325.       2.6
+5     5 Georg…    14  40.1       23.4       32.6       71.8       305.       2.1
+6     6 Memph…    13  39.4       24.7       37         66.7       306.       2.5
+# ℹ 16 more variables: RushingAtt &lt;dbl&gt;, RushingYds &lt;dbl&gt;, RushingAvg &lt;dbl&gt;,
+#   RushingTD &lt;dbl&gt;, TotalPlays &lt;dbl&gt;, TotalYds &lt;dbl&gt;, TotalAvg &lt;dbl&gt;,
+#   FirstDownPass &lt;dbl&gt;, FirstDownRush &lt;dbl&gt;, FirstDownPen &lt;dbl&gt;,
+#   FirstDownTot &lt;dbl&gt;, Penalties &lt;dbl&gt;, PenYds &lt;dbl&gt;, Fum &lt;dbl&gt;, Int &lt;dbl&gt;,
+#   Tot &lt;dbl&gt;</code></pre>
 </div>
 </div>
 
