@@ -336,77 +336,70 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>iowawindefense <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"iowawindefense.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in read.table(file = file, header = header, sep = sep, quote = quote, :
-incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></pre>
-</div>
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>iowalossdefense <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"iowalossdefense.csv"</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>windef <span class="ot">&lt;-</span> iowawindefense <span class="sc">|&gt;</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    Wins,</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    IowaRank,</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    YPG,</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    YPGAvg</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>lossdef <span class="ot">&lt;-</span> iowalossdefense <span class="sc">|&gt;</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    Losses,</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    IowaRank,</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    YPG,</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    YPGAvg</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>windef <span class="sc">|&gt;</span></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">IowaRank =</span> <span class="st">"Iowa's rank"</span>,</span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">YPG =</span> <span class="st">"Yards per game"</span>,</span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">YPGAvg =</span> <span class="st">"YPG national average"</span></span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(</span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Iowa's defense when they win"</span></span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(</span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">style =</span> <span class="fu">cell_text</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">weight =</span> <span class="st">"bold"</span>, <span class="at">align =</span> <span class="st">"left"</span>),</span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">locations =</span> <span class="fu">cells_title</span>(<span class="st">"title"</span>)</span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_source_note</span>(</span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">source_note =</span> <span class="fu">md</span>(<span class="st">"**By:** Sam Pineda | **Source:** cfbstats.com"</span>)</span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(</span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">locations =</span> <span class="fu">cells_column_labels</span>(<span class="at">columns =</span> <span class="fu">everything</span>()),</span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">style =</span> <span class="fu">list</span>(</span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>      <span class="fu">cell_borders</span>(<span class="at">sides =</span> <span class="st">"bottom"</span>, <span class="at">weight =</span> <span class="fu">px</span>(<span class="dv">3</span>)),</span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>      <span class="fu">cell_text</span>(<span class="at">weight =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">12</span>)</span>
-<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">opt_row_striping</span>() <span class="sc">|&gt;</span></span>
-<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">opt_table_lines</span>(<span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>iowawindefense <span class="ot">&lt;-</span> <span class="fu">suppressWarnings</span> (<span class="fu">read.csv</span>(<span class="st">"iowawindefense.csv"</span>))</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>iowalossdefense <span class="ot">&lt;-</span> <span class="fu">suppressWarnings</span> (<span class="fu">read.csv</span>(<span class="st">"iowalossdefense.csv"</span>))</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>windef <span class="ot">&lt;-</span> iowawindefense <span class="sc">|&gt;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    Wins,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    IowaRank,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    YPG,</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    YPGAvg</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>lossdef <span class="ot">&lt;-</span> iowalossdefense <span class="sc">|&gt;</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    Losses,</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    IowaRank,</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    YPG,</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    YPGAvg</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>windef <span class="sc">|&gt;</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">IowaRank =</span> <span class="st">"Iowa's rank"</span>,</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">YPG =</span> <span class="st">"Yards per game"</span>,</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">YPGAvg =</span> <span class="st">"YPG national average"</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Iowa's defense when they win"</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">style =</span> <span class="fu">cell_text</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">weight =</span> <span class="st">"bold"</span>, <span class="at">align =</span> <span class="st">"left"</span>),</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">locations =</span> <span class="fu">cells_title</span>(<span class="st">"title"</span>)</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_source_note</span>(</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">source_note =</span> <span class="fu">md</span>(<span class="st">"**By:** Sam Pineda | **Source:** cfbstats.com"</span>)</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">locations =</span> <span class="fu">cells_column_labels</span>(<span class="at">columns =</span> <span class="fu">everything</span>()),</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">style =</span> <span class="fu">list</span>(</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>      <span class="fu">cell_borders</span>(<span class="at">sides =</span> <span class="st">"bottom"</span>, <span class="at">weight =</span> <span class="fu">px</span>(<span class="dv">3</span>)),</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>      <span class="fu">cell_text</span>(<span class="at">weight =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">12</span>)</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">opt_row_striping</span>() <span class="sc">|&gt;</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">opt_table_lines</span>(<span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="manliqkaoi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#manliqkaoi table {
+<div id="cinmhsjiis" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#cinmhsjiis table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#manliqkaoi thead, #manliqkaoi tbody, #manliqkaoi tfoot, #manliqkaoi tr, #manliqkaoi td, #manliqkaoi th {
+#cinmhsjiis thead, #cinmhsjiis tbody, #cinmhsjiis tfoot, #cinmhsjiis tr, #cinmhsjiis td, #cinmhsjiis th {
   border-style: none;
 }
 
-#manliqkaoi p {
+#cinmhsjiis p {
   margin: 0;
   padding: 0;
 }
 
-#manliqkaoi .gt_table {
+#cinmhsjiis .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -432,12 +425,12 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   border-left-color: #D3D3D3;
 }
 
-#manliqkaoi .gt_caption {
+#cinmhsjiis .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#manliqkaoi .gt_title {
+#cinmhsjiis .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -449,7 +442,7 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   border-bottom-width: 0;
 }
 
-#manliqkaoi .gt_subtitle {
+#cinmhsjiis .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -461,7 +454,7 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   border-top-width: 0;
 }
 
-#manliqkaoi .gt_heading {
+#cinmhsjiis .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -473,13 +466,13 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   border-right-color: #D3D3D3;
 }
 
-#manliqkaoi .gt_bottom_border {
+#cinmhsjiis .gt_bottom_border {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#manliqkaoi .gt_col_headings {
+#cinmhsjiis .gt_col_headings {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -494,7 +487,7 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   border-right-color: #D3D3D3;
 }
 
-#manliqkaoi .gt_col_heading {
+#cinmhsjiis .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -514,7 +507,7 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   overflow-x: hidden;
 }
 
-#manliqkaoi .gt_column_spanner_outer {
+#cinmhsjiis .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -526,15 +519,15 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   padding-right: 4px;
 }
 
-#manliqkaoi .gt_column_spanner_outer:first-child {
+#cinmhsjiis .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#manliqkaoi .gt_column_spanner_outer:last-child {
+#cinmhsjiis .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#manliqkaoi .gt_column_spanner {
+#cinmhsjiis .gt_column_spanner {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -546,11 +539,11 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   width: 100%;
 }
 
-#manliqkaoi .gt_spanner_row {
+#cinmhsjiis .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#manliqkaoi .gt_group_heading {
+#cinmhsjiis .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -576,7 +569,7 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   text-align: left;
 }
 
-#manliqkaoi .gt_empty_group_heading {
+#cinmhsjiis .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -591,15 +584,15 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   vertical-align: middle;
 }
 
-#manliqkaoi .gt_from_md > :first-child {
+#cinmhsjiis .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#manliqkaoi .gt_from_md > :last-child {
+#cinmhsjiis .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#manliqkaoi .gt_row {
+#cinmhsjiis .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -618,7 +611,7 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   overflow-x: hidden;
 }
 
-#manliqkaoi .gt_stub {
+#cinmhsjiis .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -631,7 +624,7 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   padding-right: 5px;
 }
 
-#manliqkaoi .gt_stub_row_group {
+#cinmhsjiis .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -645,15 +638,15 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   vertical-align: top;
 }
 
-#manliqkaoi .gt_row_group_first td {
+#cinmhsjiis .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#manliqkaoi .gt_row_group_first th {
+#cinmhsjiis .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#manliqkaoi .gt_summary_row {
+#cinmhsjiis .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -663,16 +656,16 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   padding-right: 5px;
 }
 
-#manliqkaoi .gt_first_summary_row {
+#cinmhsjiis .gt_first_summary_row {
   border-top-style: none;
   border-top-color: #D3D3D3;
 }
 
-#manliqkaoi .gt_first_summary_row.thick {
+#cinmhsjiis .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#manliqkaoi .gt_last_summary_row {
+#cinmhsjiis .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -682,7 +675,7 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   border-bottom-color: #D3D3D3;
 }
 
-#manliqkaoi .gt_grand_summary_row {
+#cinmhsjiis .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -692,7 +685,7 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   padding-right: 5px;
 }
 
-#manliqkaoi .gt_first_grand_summary_row {
+#cinmhsjiis .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -702,7 +695,7 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   border-top-color: #D3D3D3;
 }
 
-#manliqkaoi .gt_last_grand_summary_row_top {
+#cinmhsjiis .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -712,11 +705,11 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   border-bottom-color: #D3D3D3;
 }
 
-#manliqkaoi .gt_striped {
+#cinmhsjiis .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#manliqkaoi .gt_table_body {
+#cinmhsjiis .gt_table_body {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -725,7 +718,7 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   border-bottom-color: #D3D3D3;
 }
 
-#manliqkaoi .gt_footnotes {
+#cinmhsjiis .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -739,7 +732,7 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   border-right-color: #D3D3D3;
 }
 
-#manliqkaoi .gt_footnote {
+#cinmhsjiis .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -748,7 +741,7 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   padding-right: 5px;
 }
 
-#manliqkaoi .gt_sourcenotes {
+#cinmhsjiis .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -762,7 +755,7 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   border-right-color: #D3D3D3;
 }
 
-#manliqkaoi .gt_sourcenote {
+#cinmhsjiis .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -770,72 +763,72 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   padding-right: 5px;
 }
 
-#manliqkaoi .gt_left {
+#cinmhsjiis .gt_left {
   text-align: left;
 }
 
-#manliqkaoi .gt_center {
+#cinmhsjiis .gt_center {
   text-align: center;
 }
 
-#manliqkaoi .gt_right {
+#cinmhsjiis .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#manliqkaoi .gt_font_normal {
+#cinmhsjiis .gt_font_normal {
   font-weight: normal;
 }
 
-#manliqkaoi .gt_font_bold {
+#cinmhsjiis .gt_font_bold {
   font-weight: bold;
 }
 
-#manliqkaoi .gt_font_italic {
+#cinmhsjiis .gt_font_italic {
   font-style: italic;
 }
 
-#manliqkaoi .gt_super {
+#cinmhsjiis .gt_super {
   font-size: 65%;
 }
 
-#manliqkaoi .gt_footnote_marks {
+#cinmhsjiis .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#manliqkaoi .gt_asterisk {
+#cinmhsjiis .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#manliqkaoi .gt_indent_1 {
+#cinmhsjiis .gt_indent_1 {
   text-indent: 5px;
 }
 
-#manliqkaoi .gt_indent_2 {
+#cinmhsjiis .gt_indent_2 {
   text-indent: 10px;
 }
 
-#manliqkaoi .gt_indent_3 {
+#cinmhsjiis .gt_indent_3 {
   text-indent: 15px;
 }
 
-#manliqkaoi .gt_indent_4 {
+#cinmhsjiis .gt_indent_4 {
   text-indent: 20px;
 }
 
-#manliqkaoi .gt_indent_5 {
+#cinmhsjiis .gt_indent_5 {
   text-indent: 25px;
 }
 
-#manliqkaoi .katex-display {
+#cinmhsjiis .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#manliqkaoi div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#cinmhsjiis div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -879,51 +872,51 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>lossdef <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">IowaRank =</span> <span class="st">"Iowa's rank"</span>,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">YPG =</span> <span class="st">"Yards per game"</span>,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">YPGAvg =</span> <span class="st">"YPG national average"</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Iowa's defense when they lose"</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">style =</span> <span class="fu">cell_text</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">weight =</span> <span class="st">"bold"</span>, <span class="at">align =</span> <span class="st">"left"</span>),</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">locations =</span> <span class="fu">cells_title</span>(<span class="st">"title"</span>)</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_source_note</span>(</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">source_note =</span> <span class="fu">md</span>(<span class="st">"**By:** Sam Pineda | **Source:** cfbstats.com"</span>)</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">locations =</span> <span class="fu">cells_column_labels</span>(<span class="at">columns =</span> <span class="fu">everything</span>()),</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">style =</span> <span class="fu">list</span>(</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>      <span class="fu">cell_borders</span>(<span class="at">sides =</span> <span class="st">"bottom"</span>, <span class="at">weight =</span> <span class="fu">px</span>(<span class="dv">3</span>)),</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>      <span class="fu">cell_text</span>(<span class="at">weight =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">12</span>)</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">opt_row_striping</span>() <span class="sc">|&gt;</span></span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">opt_table_lines</span>(<span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>lossdef <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">IowaRank =</span> <span class="st">"Iowa's rank"</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">YPG =</span> <span class="st">"Yards per game"</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">YPGAvg =</span> <span class="st">"YPG national average"</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Iowa's defense when they lose"</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">style =</span> <span class="fu">cell_text</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">weight =</span> <span class="st">"bold"</span>, <span class="at">align =</span> <span class="st">"left"</span>),</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">locations =</span> <span class="fu">cells_title</span>(<span class="st">"title"</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_source_note</span>(</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">source_note =</span> <span class="fu">md</span>(<span class="st">"**By:** Sam Pineda | **Source:** cfbstats.com"</span>)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">locations =</span> <span class="fu">cells_column_labels</span>(<span class="at">columns =</span> <span class="fu">everything</span>()),</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">style =</span> <span class="fu">list</span>(</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>      <span class="fu">cell_borders</span>(<span class="at">sides =</span> <span class="st">"bottom"</span>, <span class="at">weight =</span> <span class="fu">px</span>(<span class="dv">3</span>)),</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>      <span class="fu">cell_text</span>(<span class="at">weight =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">12</span>)</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">opt_row_striping</span>() <span class="sc">|&gt;</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">opt_table_lines</span>(<span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="lgufielrxr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#lgufielrxr table {
+<div id="onkexfyece" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#onkexfyece table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#lgufielrxr thead, #lgufielrxr tbody, #lgufielrxr tfoot, #lgufielrxr tr, #lgufielrxr td, #lgufielrxr th {
+#onkexfyece thead, #onkexfyece tbody, #onkexfyece tfoot, #onkexfyece tr, #onkexfyece td, #onkexfyece th {
   border-style: none;
 }
 
-#lgufielrxr p {
+#onkexfyece p {
   margin: 0;
   padding: 0;
 }
 
-#lgufielrxr .gt_table {
+#onkexfyece .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -949,12 +942,12 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   border-left-color: #D3D3D3;
 }
 
-#lgufielrxr .gt_caption {
+#onkexfyece .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#lgufielrxr .gt_title {
+#onkexfyece .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -966,7 +959,7 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   border-bottom-width: 0;
 }
 
-#lgufielrxr .gt_subtitle {
+#onkexfyece .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -978,7 +971,7 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   border-top-width: 0;
 }
 
-#lgufielrxr .gt_heading {
+#onkexfyece .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -990,13 +983,13 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   border-right-color: #D3D3D3;
 }
 
-#lgufielrxr .gt_bottom_border {
+#onkexfyece .gt_bottom_border {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#lgufielrxr .gt_col_headings {
+#onkexfyece .gt_col_headings {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1011,7 +1004,7 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   border-right-color: #D3D3D3;
 }
 
-#lgufielrxr .gt_col_heading {
+#onkexfyece .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1031,7 +1024,7 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   overflow-x: hidden;
 }
 
-#lgufielrxr .gt_column_spanner_outer {
+#onkexfyece .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1043,15 +1036,15 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   padding-right: 4px;
 }
 
-#lgufielrxr .gt_column_spanner_outer:first-child {
+#onkexfyece .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#lgufielrxr .gt_column_spanner_outer:last-child {
+#onkexfyece .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#lgufielrxr .gt_column_spanner {
+#onkexfyece .gt_column_spanner {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1063,11 +1056,11 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   width: 100%;
 }
 
-#lgufielrxr .gt_spanner_row {
+#onkexfyece .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#lgufielrxr .gt_group_heading {
+#onkexfyece .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1093,7 +1086,7 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   text-align: left;
 }
 
-#lgufielrxr .gt_empty_group_heading {
+#onkexfyece .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1108,15 +1101,15 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   vertical-align: middle;
 }
 
-#lgufielrxr .gt_from_md > :first-child {
+#onkexfyece .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#lgufielrxr .gt_from_md > :last-child {
+#onkexfyece .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#lgufielrxr .gt_row {
+#onkexfyece .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1135,7 +1128,7 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   overflow-x: hidden;
 }
 
-#lgufielrxr .gt_stub {
+#onkexfyece .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1148,7 +1141,7 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   padding-right: 5px;
 }
 
-#lgufielrxr .gt_stub_row_group {
+#onkexfyece .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1162,15 +1155,15 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   vertical-align: top;
 }
 
-#lgufielrxr .gt_row_group_first td {
+#onkexfyece .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#lgufielrxr .gt_row_group_first th {
+#onkexfyece .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#lgufielrxr .gt_summary_row {
+#onkexfyece .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1180,16 +1173,16 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   padding-right: 5px;
 }
 
-#lgufielrxr .gt_first_summary_row {
+#onkexfyece .gt_first_summary_row {
   border-top-style: none;
   border-top-color: #D3D3D3;
 }
 
-#lgufielrxr .gt_first_summary_row.thick {
+#onkexfyece .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#lgufielrxr .gt_last_summary_row {
+#onkexfyece .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1199,7 +1192,7 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   border-bottom-color: #D3D3D3;
 }
 
-#lgufielrxr .gt_grand_summary_row {
+#onkexfyece .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1209,7 +1202,7 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   padding-right: 5px;
 }
 
-#lgufielrxr .gt_first_grand_summary_row {
+#onkexfyece .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1219,7 +1212,7 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   border-top-color: #D3D3D3;
 }
 
-#lgufielrxr .gt_last_grand_summary_row_top {
+#onkexfyece .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1229,11 +1222,11 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   border-bottom-color: #D3D3D3;
 }
 
-#lgufielrxr .gt_striped {
+#onkexfyece .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#lgufielrxr .gt_table_body {
+#onkexfyece .gt_table_body {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1242,7 +1235,7 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   border-bottom-color: #D3D3D3;
 }
 
-#lgufielrxr .gt_footnotes {
+#onkexfyece .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1256,7 +1249,7 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   border-right-color: #D3D3D3;
 }
 
-#lgufielrxr .gt_footnote {
+#onkexfyece .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1265,7 +1258,7 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   padding-right: 5px;
 }
 
-#lgufielrxr .gt_sourcenotes {
+#onkexfyece .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1279,7 +1272,7 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   border-right-color: #D3D3D3;
 }
 
-#lgufielrxr .gt_sourcenote {
+#onkexfyece .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1287,72 +1280,72 @@ incomplete final line found by readTableHeader on 'iowawindefense.csv'</code></p
   padding-right: 5px;
 }
 
-#lgufielrxr .gt_left {
+#onkexfyece .gt_left {
   text-align: left;
 }
 
-#lgufielrxr .gt_center {
+#onkexfyece .gt_center {
   text-align: center;
 }
 
-#lgufielrxr .gt_right {
+#onkexfyece .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#lgufielrxr .gt_font_normal {
+#onkexfyece .gt_font_normal {
   font-weight: normal;
 }
 
-#lgufielrxr .gt_font_bold {
+#onkexfyece .gt_font_bold {
   font-weight: bold;
 }
 
-#lgufielrxr .gt_font_italic {
+#onkexfyece .gt_font_italic {
   font-style: italic;
 }
 
-#lgufielrxr .gt_super {
+#onkexfyece .gt_super {
   font-size: 65%;
 }
 
-#lgufielrxr .gt_footnote_marks {
+#onkexfyece .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#lgufielrxr .gt_asterisk {
+#onkexfyece .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#lgufielrxr .gt_indent_1 {
+#onkexfyece .gt_indent_1 {
   text-indent: 5px;
 }
 
-#lgufielrxr .gt_indent_2 {
+#onkexfyece .gt_indent_2 {
   text-indent: 10px;
 }
 
-#lgufielrxr .gt_indent_3 {
+#onkexfyece .gt_indent_3 {
   text-indent: 15px;
 }
 
-#lgufielrxr .gt_indent_4 {
+#onkexfyece .gt_indent_4 {
   text-indent: 20px;
 }
 
-#lgufielrxr .gt_indent_5 {
+#onkexfyece .gt_indent_5 {
   text-indent: 25px;
 }
 
-#lgufielrxr .katex-display {
+#onkexfyece .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#lgufielrxr div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#onkexfyece div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
